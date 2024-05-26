@@ -12,7 +12,7 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <label for="connection">Table</label>
+                    <label for="connection">Sheet</label>
                     <select class="form-control" name="sheet" id="connection">
                         @foreach($sheets as $sheeet)
                             <option value="{{ $sheeet }}">{{ $sheeet }}</option>
