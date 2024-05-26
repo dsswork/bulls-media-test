@@ -5,7 +5,7 @@
 - Laravel 11
 
 ### Base Settings
-1. Run git clone
+1. Run git clone https://github.com/dsswork/bulls-media-test.git
 2. Run cp .env.example .env
 3. Set up your settings in .env:
     - DOCKER_NGINX_PORT
