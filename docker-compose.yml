@@ -1,26 +1,6 @@
 version: "3.9"
 services:
 
-    #Supervisor
-    supervisor:
-        build:
-            args:
-                user: ${DOCKER_USERNAME}
-                uid: ${DOCKER_USER_ID}
-            context: ./docker/supervisor
-            dockerfile: Dockerfile
-        image: ${DOCKER_APP_NAME}-supervisor
-        container_name: ${DOCKER_APP_NAME}-supervisor
-        restart: unless-stopped
-        tty: true
-        working_dir: /var/www
-        volumes:
-            - ./:/var/www
-            - ./docker/supervisor/config:/etc/supervisor/conf.d
-            - ./docker/supervisor/logs:/var/log/supervisor
-        networks:
-            - ${DOCKER_APP_NAME}
-
     #PHP Service Laravel Application
     app:
         build:
