@@ -4,7 +4,10 @@ namespace App\Http\Services;
 
 use App\Models\Table;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class TableService extends BaseService
 {
@@ -19,5 +22,12 @@ class TableService extends BaseService
         return Table::query()->whereHas('connection', function ($query) {
             $query->where('user_id', auth()->id());
         })->get();
+    }
+
+    public function create(array $params): Model|Builder
+    {
+        return $this->model
+            ->query()
+            ->create($params);
     }
 }

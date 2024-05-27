@@ -19,13 +19,6 @@ class BaseService
             ->get();
     }
 
-    public function create(array $params, UploadedFile|null $file = null): Model|Builder
-    {
-        return $this->model
-            ->query()
-            ->create($params);
-    }
-
     public function delete(Model $model): void
     {
         $model->delete();
