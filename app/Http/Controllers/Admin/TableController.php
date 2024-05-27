@@ -75,7 +75,8 @@ class TableController extends Controller
      */
     public function store(StoreTableRequest $request): RedirectResponse
     {
-        Table::query()->create($request->validated());
+        $this->service->create($request->validated());
+
         return to_route('admin.tables.index');
     }
 
@@ -100,7 +101,8 @@ class TableController extends Controller
      */
     public function destroy(Table $table): RedirectResponse
     {
-        $table->delete();
+        $this->service->delete($table);
+
         return to_route('admin.tables.index');
     }
 }

@@ -22,9 +22,7 @@ class ConnectionController extends Controller
      */
     public function index(): View
     {
-        $connections = $this->service->getAllByUser(
-            $this->getUser()
-        );
+        $connections = $this->service->getAllByUser($this->getUser());
 
         return view('admin.connections.index', ['models' => $connections]);
     }

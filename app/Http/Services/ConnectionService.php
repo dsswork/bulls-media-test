@@ -16,7 +16,7 @@ class ConnectionService extends BaseService
         $this->model = $connection;
     }
 
-    public function create(array $params, UploadedFile|null $file): Model|Builder|Connection
+    public function create(array $params, UploadedFile|null $file = null): Model|Builder|Connection
     {
         if ($file) {
             $filename = $file->getClientOriginalName();

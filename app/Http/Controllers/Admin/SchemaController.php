@@ -7,8 +7,8 @@ use App\Http\Requests\Schema\StoreSchemaRequest;
 use App\Http\Requests\Schema\UpdateSchemaRequest;
 use App\Http\Services\SchemaService;
 use App\Models\Schema;
-use App\Models\User;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class SchemaController extends Controller
 {
@@ -23,6 +23,7 @@ class SchemaController extends Controller
     public function index(): View
     {
         $schemas = $this->service->getAllByUser($this->getUser());
+
         return view('admin.schemas.index', ['models' => $schemas]);
     }
 
@@ -37,9 +38,10 @@ class SchemaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSchemaRequest $request)
+    public function store(StoreSchemaRequest $request): RedirectResponse
     {
-        Schema::query()->create($request->validated());
+        $this->service->create($request->validated());
+
         return to_route('admin.schemas.index');
     }
 
@@ -54,7 +56,7 @@ class SchemaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSchemaRequest $request, Schema $schema)
+    public function update(UpdateSchemaRequest $request, Schema $schema): RedirectResponse
     {
         $schema->update($request->validated());
         return to_route('admin.schemas.index');
@@ -63,7 +65,7 @@ class SchemaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Schema $schema)
+    public function destroy(Schema $schema): RedirectResponse
     {
         $schema->delete();
         return to_route('admin.schemas.index');

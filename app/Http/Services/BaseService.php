@@ -3,8 +3,10 @@
 namespace App\Http\Services;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class BaseService
 {
@@ -15,6 +17,13 @@ class BaseService
         return $this->model->query()
             ->where('user_id', $user->getKey())
             ->get();
+    }
+
+    public function create(array $params, UploadedFile|null $file = null): Model|Builder
+    {
+        return $this->model
+            ->query()
+            ->create($params);
     }
 
     public function delete(Model $model): void
